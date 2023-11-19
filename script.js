@@ -48,7 +48,6 @@ document.getElementById("result").innerHTML+=
     <div class="script">
       <h3>${flower.name}</h3><p>€ ${flower.price}</p>           
       <div class="links cart-button"><button class="go"><i class="fs-4 bi bi-cart-plus"></i> Add to cart</button>  
-      </a>
       </div>
       </div>
       </div>
@@ -56,7 +55,10 @@ document.getElementById("result").innerHTML+=
 })
 
 let addTocartBtn = document.querySelectorAll(".cart-button");
+
+let cartCount=0;
 let cart = [];
+
 
 addTocartBtn.forEach(function(btn,i) {
 btn.addEventListener("click",function() {
@@ -65,22 +67,47 @@ btn.addEventListener("click",function() {
 })
 
 
+
 function addTocart(i) {
     if (cart.find((item) => item.name == flowers[i].name)){
     flowers[i].qtty++;
     }else{
         cart.push(flowers[i]);
     }
-    //console.table(cart);
+    //console.log("Item added");
+    cartCount++;
     createCartInHTML();
     calcTotal();
+    updateCartCount();
     };
+
+
+    function updateCartCount() {
+      const cartCountElement = document.querySelector(".cart-count");
+      if (cartCountElement) {
+        cartCountElement.innerText = cartCount;
+    }
+    }
+
+  
+function increaseCartCount() {
+  cartCount += 1;
+  updateCartCount();
+}
+
+function decreaseCartCount() {
+  if (cartCount > 0) {
+      cartCount -= 1;
+      updateCartCount();
+  }
+}
 
 function plusQtty(i){
     cart[i].qtty++;
     document.querySelectorAll(".qtty")[i].innerText = cart[i].qtty;
     
 }
+
 
 function minusQtty(i) {
     if (cart[i].qtty==1 ) {
@@ -108,6 +135,17 @@ function calcTotal(){
    document.getElementById("price").innerHTML=total + "€";
 }
 
+// const cartCount = document.querySelector('.cart-count');
+// let count = cart[i].qtty++;
+
+// cartCount.innerHTML = count;
+
+// if (count === 0) {
+//     cartCount.style.display = 'none';
+// } else {
+//   cart.push(cart[i]);
+//     cartCount.style.display = 'block';
+// }
 
 
 
@@ -156,6 +194,7 @@ function calcTotal(){
    plusBtn.addEventListener("click",function(){
     plusQtty(i);
     calcTotal();
+    increaseCartCount();
    })
 
 });
@@ -166,6 +205,7 @@ function calcTotal(){
      minusQtty(i);
      calcTotal();
      createCartInHTML();
+     decreaseCartCount();
     })
 })
 
