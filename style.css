@@ -85,7 +85,7 @@
       }
       
     .go {
-      background-color: #eee;
+      background-color: #f9f2f2;
       border: solid black;
       padding: 5px 3px;
       font-size: 1rem;
@@ -369,6 +369,14 @@
         grid-template-columns: repeat(1, 1fr);
         margin: 20px 0px;
         gap: 5px;
+        }
+
+        .product footer .full-price {
+          font-size: 20px;
+          font-weight: 200;
+          line-height: 41px;
+          margin-top: -8px;
+          padding: 8px;
         }
     }
        
