@@ -7,3 +7,5 @@ This project was built with Javascript, HTML5 and CSS3
 * Remove product with the remove button
 * Total amount of cart products and the whole cart total are calculated upon updates in cart products 
 * Responsive design
+
+[Go live](https://stavrosan.github.io/Javascript-add-to-cart/)
